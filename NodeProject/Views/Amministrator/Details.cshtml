@@ -1,0 +1,90 @@
+﻿@model Vacancy
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<header>
+    <div class="container mb-3">
+        <a class="navbar-brand mb-1" asp-area="" asp-controller="Amministrator" asp-action="Index">
+            <i class="fas fa-angle-left"></i> List All Vacancies
+        </a>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <dl class="row">
+            <dt class="col-sm-3">Vacancy ID</dt>
+            <dd class="col-sm-9">@Model.VacancyID</dd>
+
+            <dt class="col-sm-3 border-top">Vacancy Title</dt>
+            <dd class="col-sm-9 border-top">@Model.VacancyTitle</dd>
+
+            <dt class="col-sm-3 border-top">Vacancy Description</dt>
+            <dd class="col-sm-9 border-top">@Model.VacancyDescription</dd>
+
+            <dt class="col-sm-3 border-top">Vacancy Salary</dt>
+            <dd class="col-sm-9 border-top">@Model.VacancySalary €</dd>
+
+            <dt class="col-sm-3 border-top">Vacancy Benefits</dt>
+            <dd class="col-sm-9 border-top">@Model.VacancyBenefits</dd>
+
+            <dt class="col-sm-3 border-top">Vacancy is visible</dt>
+            <dd class="col-sm-9 border-top">
+                @if (@Model.VacancyIsVisible)
+                {
+                    <span class="icon-positive">
+                        <i class="fas fa-check-circle"></i>
+                    </span>
+                }
+                else
+                {
+                    <i class="fas fa-minus-circle icon-negative"></i>
+                }
+            </dd>
+
+            <dt class="col-sm-3 border-top">Date of publish</dt>
+            <dd class="col-sm-9 border-top">@Model.VacancyPublish.ToString("dd/MM/yyyy")</dd>
+
+            <dt class="col-sm-3 border-top">Publisher</dt>
+            <dd class="col-sm-9 border-top">@Model.Amministrator.AmministratorName</dd>
+
+            <dt class="col-sm-3 border-top">Company</dt>
+            <dd class="col-sm-9 border-top">@Model.Company.CompanyName</dd>
+
+            <dt class="col-sm-3 border-top">Candidates</dt>
+            @if (Model.Users.Count > 0)
+            {
+                <table class="table col-sm-3">
+                    <thead>
+                        <tr>
+                            <th scope="col">FirstName</th>
+                            <th scope="col">LastName</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.Users)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@item.UserSurname</td>
+                                <td>@item.UserName</td>
+                            </tr>
+                        </tbody>
+                    }
+                </table>
+            }
+            else
+            {
+                <dd class="col-sm-9 border-top">No candidates for this vacancy</dd>
+            }
+        </dl>
+        <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@Model.VacancyID">Edit</a>
+        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model.VacancyID">Delete</a>
+    </div>
+</main>
+<footer class="border-top d-flex align-items-center">
+    <div class="container classTest">
+        &copy; 2021 - NodeProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>

@@ -1,0 +1,77 @@
+﻿@model CreateNewVacancyDto
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/_Layout.cshtml";
+    ViewBag.Title = "MultipleParameter";
+}
+<header>
+    <div class="container mb-3">
+        <a class="navbar-brand mb-1" asp-area="" asp-controller="Request" asp-action="Index">
+            <i class="fas fa-angle-left"></i> List Request
+        </a>
+    </div>
+</header>
+<main>
+    <div>@ViewBag.RequestId</div>
+    <hr />
+    <div class="container">
+        <div class="col-md-12">
+            <form asp-action="Create">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="VacancyTitle" class="control-label"></label>
+                            <input asp-for="VacancyTitle" class="form-control" />
+                            <span asp-validation-for="VacancyTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="VacancyDescription" class="control-label"></label>
+                            <input asp-for="VacancyDescription" class="form-control" />
+                            <span asp-validation-for="VacancyDescription" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="VacancySalary" class="input-number-label"></label>
+                            <input asp-for="VacancySalary" type="number" class="form-control" min="0.00" max="1000000.00" step=".01" value="0.00" />
+                            <span asp-validation-for="VacancySalary" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="VacancyBenefits" class="control-label"></label>
+                            <input asp-for="VacancyBenefits" class="form-control" />
+                            <span asp-validation-for="VacancyBenefits" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <label asp-for="VacancyIsVisible" class="form-check-label" for="checkbox"></label>
+                            <input asp-for="VacancyIsVisible" class="form-check-input ml-2" type="checkbox" name="checkbox" />
+                            <span asp-validation-for="VacancyIsVisible" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mt-5">
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<footer class="border-top d-flex align-items-center">
+    <div class="container classTest">
+        &copy; 2021 - NodeProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>

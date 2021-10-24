@@ -1,0 +1,100 @@
+﻿@model PaginatedList<Vacancy>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<header>
+    <div class="container mb-3">
+        <a class="navbar-brand mb-1" asp-area="" asp-controller="Amministrator" asp-action="Index">NodeProject</a>
+        <div class="d-flex justify-content-around align-items-center">
+            <h4>List all Vacancies</h4>
+            <form asp-action="Index" method="get">
+                <div class="d-flex align-items-center">
+                    <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Search vacancies..." />
+                    <input type="submit" value="Search" class="btn btn-outline-secondary mx-2" />
+                    <a asp-action="Index" class="btn btn-outline-secondary ml-2">Back to Full List</a>
+                </div>
+            </form>
+            <a asp-area="" asp-controller="Request" asp-action="Index" type="button" class="btn btn-outline-info">Request</a>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container mb-5">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Visible
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.VacancyID
+                        </td>
+                        <td class="font-weight-bold">
+                            @item.VacancyTitle
+                        </td>
+                        <td>
+                            @item.VacancyDescription
+                        </td>
+                        <td>
+                            @if (@item.VacancyIsVisible)
+                            {
+                                <span class="icon-positive">
+                                    <i class="fas fa-check-circle"></i>
+                                </span>
+                            }
+                            else
+                            {
+                                <i class="fas fa-minus-circle icon-negative"></i>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-primary btn-sm" asp-action="Details" asp-route-id="@item.VacancyID">Details</a>
+                            <a class="btn btn-outline-warning btn-sm" asp-action="Edit" asp-route-id="@item.VacancyID">Edit</a>
+                            <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.VacancyID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+        }
+
+        <a asp-action="Index"
+           asp-route-pageNumber="@(Model.PageNumber - 1)"
+           type="button" class="btn btn-outline-dark @prevDisabled">
+            Previous
+        </a>
+        <a asp-action="Index"
+           asp-route-pageNumber="@(Model.PageNumber + 1)"
+           type="button" class="btn btn-outline-dark @nextDisabled">
+            Next
+        </a>
+    </div>
+</main>
+<footer class="border-top d-flex align-items-center">
+    <div class="container classTest">
+        &copy; 2021 - NodeProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>

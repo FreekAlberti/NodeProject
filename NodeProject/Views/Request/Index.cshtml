@@ -1,0 +1,66 @@
+﻿@model List<Request>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<header>
+    <div class="container mb-3">
+        <a class="navbar-brand mb-1" asp-area="" asp-controller="Amministrator" asp-action="Index">
+            <i class="fas fa-angle-left"></i> List All Vacancies
+        </a>
+    </div>
+</header>
+<main>
+    <div class="container mb-5">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Company Name
+                    </th>
+                    <th>
+                        Options
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.RequestID
+                        </td>
+                        <td class="font-weight-bold">
+                            @item.RequestTitle
+                        </td>
+                        <td>
+                            @item.RequestContent
+                        </td>
+                        <td>
+                            @item.Company.CompanyName
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-success btn-sm m-1" asp-controller="Amministrator" asp-action="Create" asp-route-id="@item.CompanyID">Create Vacancy</a>
+                            <a class="btn btn-outline-danger btn-sm m-1" asp-action="Delete" asp-route-id="@item.RequestID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer class="border-top d-flex align-items-center">
+    <div class="container classTest">
+        &copy; 2021 - NodeProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>

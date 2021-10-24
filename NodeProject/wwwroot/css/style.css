@@ -1,0 +1,42 @@
+﻿/*Generic*/
+
+body {
+    height: 100vh;
+    position: relative;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+/*Header*/
+
+header {
+    height: 15%;
+}
+
+/*Main*/
+
+main {
+    overflow: auto;
+    height: 75%;
+    padding-bottom: 40px;
+}
+
+.icon-positive {
+    color: green;
+}
+
+.icon-negative {
+    color: red;
+}
+
+/*Footer*/
+
+footer {
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+}

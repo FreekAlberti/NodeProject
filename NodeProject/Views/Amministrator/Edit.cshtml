@@ -1,0 +1,81 @@
+﻿@model NodeProject.DatabaseLayer.Models.Vacancy
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/_Layout.cshtml";
+}
+<header>
+    <div class="container mb-3">
+        <a class="navbar-brand mb-1" asp-area="" asp-controller="Amministrator" asp-action="Index">
+            <i class="fas fa-angle-left"></i> List Vacancies
+        </a>
+        <h1>Edit vacancy</h1>
+    </div>
+</header>
+<hr />
+<main>
+    <div class="container">
+        <div class="col-md-12">
+            <form asp-action="Edit">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="VacancyTitle" class="control-label"></label>
+                            <input asp-for="VacancyTitle" class="form-control" />
+                            <span asp-validation-for="VacancyTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="VacancyDescription" class="control-label"></label>
+                            <input asp-for="VacancyDescription" class="form-control" />
+                            <span asp-validation-for="VacancyDescription" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="VacancySalary" class="input-number-label"></label>
+                            <input asp-for="VacancySalary" type="number" class="form-control" min="0.00" max="1000000.00" step=".01" />
+                            <span asp-validation-for="VacancySalary" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="VacancyBenefits" class="control-label"></label>
+                            <input asp-for="VacancyBenefits" class="form-control" />
+                            <span asp-validation-for="VacancyBenefits" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" asp-for="VacancyIsVisible" />
+                                @Html.DisplayNameFor(model => model.VacancyIsVisible)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <input asp-for="VacancyID" type="hidden" />
+                <input asp-for="CompanyID" type="hidden" />
+                <input asp-for="AmministratorID" type="hidden" />
+                <input asp-for="VacancyPublish" type="hidden" />
+                <div class="row">
+                    <div class="col-md-12 mt-5">
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<footer class="border-top d-flex align-items-center">
+    <div class="container classTest">
+        &copy; 2021 - NodeProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+</footer>
